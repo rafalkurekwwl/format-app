@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Format</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app" id="app" data-state="empty">
+
+    <header class="topbar">
+      <div class="brand">
+        <svg viewBox="0 0 512 512" aria-hidden="true">
+          <rect width="512" height="512" rx="112" fill="var(--color-bg-brand)" />
+          <rect x="130" y="134" width="64" height="272" fill="var(--color-text-on-brand)" />
+          <rect x="146" y="134" width="242" height="64" fill="var(--color-text-on-brand)" />
+          <rect x="146" y="238" width="228" height="64" fill="var(--color-text-on-brand)" />
+        </svg>
+        <span class="brand-name">Format</span>
+      </div>
+      <span class="tagline">JPG i PNG do WebP</span>
+    </header>
+
+    <main class="stage">
+      <!-- Ekran 1 i 5: pusty / przeciąganie -->
+      <section class="dropzone" id="dropzone">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+        </svg>
+        <div class="dz-copy">
+          <h1 class="dz-title dz-idle">Upuść obrazy tutaj</h1>
+          <h1 class="dz-title dz-drag">Puść, aby dodać</h1>
+          <p class="dz-sub dz-idle">WebP zapisze się obok każdego oryginału.</p>
+          <p class="dz-sub dz-drag" id="dragCount">Pliki JPG i PNG</p>
+        </div>
+        <button class="btn btn-secondary is-m" id="pickBtn" type="button">Wybierz pliki</button>
+      </section>
+
+      <!-- Ekran 4: podsumowanie -->
+      <section class="summary" id="summary" hidden>
+        <div class="summary-left">
+          <span class="summary-label">Zaoszczędzono</span>
+          <span class="summary-value" id="summaryPercent">0%</span>
+        </div>
+        <div class="summary-right">
+          <span class="summary-sizes" id="summarySizes"></span>
+          <span class="summary-note" id="summaryNote"></span>
+        </div>
+      </section>
+
+      <!-- Ekrany 2, 3, 4, 6: lista plików -->
+      <section class="queue" id="queue" hidden>
+        <div class="queue-head" id="queueHead">
+          <h2 class="queue-title" id="queueTitle"></h2>
+          <button class="link-btn" id="clearBtn" type="button">Wyczyść listę</button>
+          <span class="queue-aside" id="queueAside"></span>
+        </div>
+        <div class="queue-list" id="queueList"></div>
+      </section>
+
+      <!-- Nakładka przeciągania nad listą (dodawanie kolejnych plików) -->
+      <div class="drag-overlay" id="dragOverlay" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M12 3v12" /><path d="m7 10 5 5 5-5" /><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" />
+        </svg>
+        <div class="dz-copy">
+          <h1 class="dz-title">Puść, aby dodać</h1>
+          <p class="dz-sub" id="overlayCount">Pliki JPG i PNG</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Ustawienia (ekrany 1, 2, 5) -->
+    <section class="panel" id="settings">
+      <div class="field">
+        <label class="field-label" for="quality">Jakość</label>
+        <input type="range" id="quality" min="1" max="100" value="80" />
+        <span class="field-value" id="qualityValue">80</span>
+      </div>
+      <label class="check">
+        <input type="checkbox" id="lossless" />
+        <span>Bezstratnie dla PNG</span>
+      </label>
+    </section>
+
+    <!-- Postęp (ekran 3) -->
+    <section class="panel" id="progress" hidden>
+      <span class="field-label">Postęp</span>
+      <div class="segments" id="segments" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"></div>
+      <span class="field-value" id="progressValue" style="width: var(--spacing-2xl)">0%</span>
+    </section>
+
+    <footer class="actionbar">
+      <span class="action-status" id="actionStatus" role="status" aria-live="polite">Brak plików w kolejce</span>
+      <div class="action-buttons" id="actionButtons"></div>
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
