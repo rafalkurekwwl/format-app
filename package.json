@@ -4,11 +4,11 @@
   "private": true,
   "description": "Format: konwerter JPG i PNG do WebP (przeciągnij i upuść)",
   "scripts": {
-    "dev": "tauri dev",
-    "build": "tauri build",
-    "tauri": "tauri",
-    "icons": "tauri icon icon-source.png"
-  },
+  "tauri": "tauri",
+  "dev": "tauri dev",
+  "build": "tauri build",
+  "icons": "tauri icon icon-source.png"
+},
   "devDependencies": {
     "@tauri-apps/cli": "^2"
   }
